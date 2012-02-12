@@ -34,9 +34,6 @@ import java.util.jar.JarFile;
 //import java.io.InputStream;
 //import java.net.URISyntaxException;
 
-
-//TODO Find a way to extract the resources (Or use them directly!)***
-
 public class start{
 	static final Class<start> cl = start.class;
 	static boolean debug = false;
@@ -200,7 +197,7 @@ public class start{
 		winXP.setName("ignore");
 		mac.addMouseListener(ml);
 		mac.setName("ignore");
-		String[] files = {"ERROR","ERROR","ERROR"}; //Just for when the ifs are passed
+		String[] files = {"ERROR","ERROR","ERROR"}; //Just for when the ifs fail
 		
 		if (new File(cl.getResource("/versions").getPath()).isDirectory()) { //Eclipse...
 			eclipse = true;
@@ -245,6 +242,9 @@ public class start{
 		}
 		
 		log("Path internal is: "+ cl.getResource("/versions").getPath(),true);
+		if (files.length<1){ //Versions folder is empty
+			files = new String[] {"versions","folder","isEmpty"};
+		}
 		for (int i=0;i<files.length;i++){
 			JMenuItem x = new JMenuItem();
 			x.setText(files[i]);
